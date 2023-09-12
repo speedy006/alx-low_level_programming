@@ -2,7 +2,7 @@
 
 /**
  * _islower - printing
- * @x - character
+ * @x: character
  * Return: 0
 */
 
