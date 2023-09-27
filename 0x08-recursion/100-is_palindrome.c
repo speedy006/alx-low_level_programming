@@ -1,44 +1,55 @@
 #include "main.h"
 
-int checker(char *s, int start, int end);
+int checker(char *s, int a, int z);
+int _strlen(char *s);
 
 /**
- * is_palindrome - checking for palindrome string
+ * is_palindrome - checking for palindrome
  * @s: string
+ * @a: value
+ * @z: value
  * Return: result
  */
 
 int is_palindrome(char *s)
 {
-	int count = 0;
-
-	while (s[count] != '\0')
-	{
-		count++;
-	}
-
-	return (checker(s, 0, count - 1));
+	return (checker(s, 0, _strlen(s) - 1));
 }
 
 /**
- * checker - checking string
+ * _strlen - string length
  * @s: string
- * @x: value
- * @y: value
- * Return: value
+ * Return: result
  */
 
-int checker(char *s, int x, int y)
+int _strlen(char *s)
 {
-	if (x >= y)
+	if (*s == '\0')
+	{
+		return (0);
+	}
+	return (1 + _strlen(s + 1));
+}
+
+/**
+ * checker - checking for palindrome
+ * @s: string
+ * @a: value
+ * @z: value
+ * Return: result
+ */
+
+int checker(char *s, int a, int z)
+{
+	if (a >= z)
 	{
 		return (1);
 	}
 
-	if (s[x] != s[y])
+	if (s[a] != s[z])
 	{
 		return (0);
 	}
 
-	return (checker(s, x + 1, y - 1));
+	return (checker(s, a + 1, z - 1));
 }

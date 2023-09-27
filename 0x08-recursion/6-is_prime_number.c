@@ -3,6 +3,7 @@
 /**
  * is_prime_number - returning prime numbers
  * @n: integer
+ * @x: integer
  * Return: result
  */
 
