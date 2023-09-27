@@ -6,8 +6,6 @@ int _strlen(char *s);
 /**
  * is_palindrome - checking for palindrome
  * @s: string
- * @a: value
- * @z: value
  * Return: result
  */
 
