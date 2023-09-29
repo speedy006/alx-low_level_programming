@@ -1,16 +1,16 @@
 #include "main.h"
 
 /**
- * _strlen_recursion - printing string length
+ * _strlen - printing string length
  * @s: string
  * Return: value
 */
 
-int _strlen_recursion(char *s)
+int _strlen(char *s)
 {
 	if (*s)
 	{
-		return (1 + _strlen_recursion(s + 1));
+		return (1 + _strlen(s + 1));
 	}
 	else
 	{

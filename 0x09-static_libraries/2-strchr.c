@@ -1,26 +1,27 @@
 #include "main.h"
 
 /**
- * _strncat - concantenating strings
- * @dest: concantenate to
- * @src: concantenate from
- * @n: bytes
- * Return: resulting string
+ * _strchr - locating string
+ * @s: string
+ * @c: character
+ * Return: value
 */
 
-char *_strncat(char *dest, char *src, int n)
+char *_strchr(char *s, char c)
 {
-	int x, y;
-
-	for (x = 0; dest[x] != '\0'; x++)
-	;
-
-	for (y = 0; y < n && src[y] != '\0'; y++)
+	while (*s != '\0')
 	{
-		dest[x + y] = src[y];
+		if (*s == c)
+		{
+			return (s);
+		}
+		s++;
 	}
 
-	dest[x + y] = '\0';
+	if (c == '\0')
+	{
+		return (s);
+	}
 
-	return (dest);
+	return (0);
 }
