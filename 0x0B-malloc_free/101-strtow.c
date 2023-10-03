@@ -1,53 +1,78 @@
-#include "main.h"
 #include <stdlib.h>
+#include "main.h"
 
 /**
- * strtow - splitting string to words
+ * len_words - count words
+ * @str: string
+ * Return: words
+ */
+
+int len_words(char *str)
+{
+	int a, b, c;
+
+	a = 0;
+	c = 0;
+
+	for (b = 0; str[b] != '\0'; b++)
+	{
+		if (str[b] == ' ')
+			a = 0;
+		else if (a == 0)
+		{
+			a = 1;
+			c++;
+		}
+	}
+
+	return (c);
+}
+
+/**
+ * **strtow - spliting string to words
  * @str: string
  * Return: pointer or NULL
  */
 
 char **strtow(char *str)
 {
-	char **result;
-	int x, y, z, a, b, c = 0;
+	char **x, *y;
+	int a, b = 0, len = 0, words, c = 0, start, end;
 
-	if (str == NULL || str[0] == '\0')
+	while (*(str + len))
+		len++;
+	words = len_words(str);
+	if (words == 0)
 		return (NULL);
-	for (x = 0; str[x]; x++)
-	{
-		if ((str[x] == ' ' || str[x + 1] == '\0') &&
-			(str[x + 1] != ' ' && str[x + 1]))
-		{
-			c++;
-		}
-	}
-	result = malloc((c + 1) * sizeof(char *));
-	if (result == NULL)
-	{
+
+	x = (char **) malloc(sizeof(char *) * (words + 1));
+	if (x == NULL)
 		return (NULL);
-	}
-	for (x = 0; str[x] && a < c; x++)
+
+	for (a = 0; a <= len; a++)
 	{
-		if (str[x] != ' ')
+		if (str[a] == ' ' || str[a] == '\0')
 		{
-			for (y = x; str[y] && str[y] != ' '; y++)
-				;
-			result[a] = malloc((y - x + 1) * sizeof(char));
-			if (result[a] == NULL)
+			if (c)
 			{
-				while (--a >= 0)
-					free(result[a]);
-				free(result);
-				return (NULL);
+				end = a;
+				y = (char *) malloc(sizeof(char) * (c + 1));
+				if (y == NULL)
+					return (NULL);
+				while (start < end)
+					*y++ = str[start++];
+				*y = '\0';
+				x[b] = y - c;
+				b++;
+				c = 0;
 			}
-			for (z = x, b = 0; z < y; z++, b++)
-				result[a][b] = str[z];
-			result[a++][b] = '\0';
-			x = y;
 		}
+		else if (c++ == 0)
+			start = a;
 	}
-	result[a] = NULL;
-	return (result);
+
+	x[b] = NULL;
+
+	return (x);
 }
 
