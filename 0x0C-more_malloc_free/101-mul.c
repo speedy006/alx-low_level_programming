@@ -1,66 +1,54 @@
-#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 
 /**
- * checker - checks for numbers
- * @a: string
+ * checker - checks digit
+ * @s: value
  * Return: 0 or 1
 */
 
-int checker(char *a)
+int checker(char *s)
 {
-	int x;
+	int x = 0;
 
-	for (x = 0; a[x] != '\0'; x++)
-		if (!isdigit(a[x]))
+	while (s[x])
+	{
+		if (!isdigit(s[x]))
 			return (0);
+		x++;
+	}
 	return (1);
 }
 
 /**
- * print_result - prints number
- * @x: number
-*/
-
-void print_result(unsigned long x)
-{
-	if (x / 10)
-	{
-		print_result(x / 10);
-	}
-	_putchar((x % 10) + '0');
-}
-
-/**
- * main - ckecks arguments
+ * main - multiplying numbers
  * @argc: number of arguments
  * @argv: array
- * Return: 0
+ * Return: value
 */
 
 int main(int argc, char *argv[])
 {
-	unsigned long x, y, z;
+	int a, b, c;
 
-	if (argc != 3 || !checker(argv[1]) || !checker(argv[2]))
+	if (argc != 3)
 	{
-		_putchar('E');
-		_putchar('r');
-		_putchar('r');
-		_putchar('o');
-		_putchar('r');
-		_putchar('\n');
+		printf("Error\n");
 		return (98);
 	}
 
-	x = atoi(argv[1]);
-	y = atoi(argv[2]);
-	z = x * y;
+	if (!checker(argv[1]) || !checker(argv[2]))
+	{
+		printf("Error\n");
+		return (98);
+	}
 
-	print_result(z);
-	_putchar('\n');
+	a = atoi(argv[1]);
+	b = atoi(argv[2]);
+	c = a * b;
+
+	printf("%d\n", c);
 
 	return (0);
 }
