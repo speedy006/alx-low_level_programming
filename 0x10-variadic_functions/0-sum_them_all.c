@@ -4,6 +4,7 @@
 /**
  * sum_them_all - sums parameters
  * @n: parameters
+ * @...: parameters
  * Return: result
 */
 
