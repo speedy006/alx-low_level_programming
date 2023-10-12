@@ -4,7 +4,6 @@
 /**
  * sum_them_all - sums parameters
  * @n: parameters
- * @...: parameters
  * Return: result
 */
 
@@ -29,3 +28,4 @@ int sum_them_all(const unsigned int n, ...)
 	va_end(func);
 	return (sum);
 }
+
