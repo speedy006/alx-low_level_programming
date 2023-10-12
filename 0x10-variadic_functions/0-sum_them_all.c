@@ -10,7 +10,7 @@
 int sum_them_all(const unsigned int n, ...)
 {
 	va_list func;
-	int sum = 0;
+	unsigned int sum = 0;
 	unsigned int x;
 
 	if (n == 0)
