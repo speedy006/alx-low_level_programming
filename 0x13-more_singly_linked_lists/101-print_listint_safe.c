@@ -1,6 +1,53 @@
 #include "lists.h"
 #include <stdio.h>
-#include <stdlib.h>
+
+/**
+ * count_listint - counts nodes
+ * @head: pointer to start of list
+ * Return: number of nodes
+ */
+
+size_t count_listint(const listint_t *head)
+{
+	const listint_t *one_move, *two_moves;
+	size_t node_count = 1;
+
+	if (head == NULL || head->next == NULL)
+	{
+		return (0);
+	}
+
+	one_move = head->next;
+	two_moves = (head->next)->next;
+
+	while (two_moves)
+	{
+		if (one_move == two_moves)
+		{
+			one_move = head;
+			while (one_move != two_moves)
+			{
+				node_count++;
+				one_move = one_move->next;
+				two_moves = two_moves->next;
+			}
+
+			one_move = one_move->next;
+			while (one_move != two_moves)
+			{
+				node_count++;
+				one_move = one_move->next;
+			}
+
+			return (node_count);
+		}
+
+		one_move = one_move->next;
+		two_moves = (two_moves->next)->next;
+	}
+
+	return (0);
+}
 
 /**
  * print_listint_safe - prints a listint_t linked list
@@ -10,34 +57,28 @@
 
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t count = 0;
-	const listint_t *one_move, *two_moves;
+	size_t count, x = 0;
 
-	if (head == NULL)
+	count = count_listint(head);
+
+	if (count == 0)
 	{
-		exit(98);
-	}
-
-	one_move = head;
-	two_moves = head;
-
-	while (one_move && two_moves && two_moves->next)
-	{
-		one_move = one_move->next;
-		two_moves = two_moves->next->next;
-
-		if (one_move == two_moves)
+		for (; head != NULL; count++)
 		{
-			printf("Loop\n");
-			return (0);
+			printf("[%p] %d\n", (void *)head, head->n);
+			head = head->next;
 		}
 	}
 
-	while (head)
+	else
 	{
-		printf("[%p] %d\n", (void *)head, head->n);
-		count++;
-		head = head->next;
+		for (x = 0; x < count; x++)
+		{
+			printf("[%p] %d\n", (void *)head, head->n);
+			head = head->next;
+		}
+
+		printf("-> [%p] %d\n", (void *)head, head->n);
 	}
 
 	return (count);
